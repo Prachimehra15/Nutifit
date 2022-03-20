@@ -1,3 +1,4 @@
+import 'package:fitness/dashboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'start.dart';
@@ -75,7 +76,7 @@ class _LoginState extends State<Login> {
         minWidth: MediaQuery.of(context).size.width,
         onPressed: (){
           Navigator.push(
-          context,MaterialPageRoute(builder: (context)=> Yoga()) );
+          context,MaterialPageRoute(builder: (context)=> Dashboard()) );
         },
         child: Text("Log In",textAlign: TextAlign.center,
           style: TextStyle(

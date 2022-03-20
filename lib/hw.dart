@@ -1,6 +1,7 @@
 import 'gendern.dart';
 import 'package:flutter/material.dart';
 import 'describe.dart';
+import 'dashboard.dart';
 class Hw extends StatefulWidget {
   const Hw({Key? key}) : super(key: key);
 
@@ -71,7 +72,7 @@ class _HwState extends State<Hw> {
           minWidth: MediaQuery.of(context).size.width,
           onPressed: (){
             Navigator.push(
-                context,MaterialPageRoute(builder: (context)=> GenderSelector()) );
+                context,MaterialPageRoute(builder: (context)=> Dashboard()) );
           },
 
           child: Text("Sign Up",textAlign: TextAlign.center,
