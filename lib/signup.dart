@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'location.dart';
 import 'start.dart';
 import 'login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 //import 'package:dropdownfield/dropdownfield.dart';
 import 'package:flutter/src/widgets/image_icon.dart';
 class Signup extends StatefulWidget {
