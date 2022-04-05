@@ -91,9 +91,6 @@ class _LoginState extends State<Login> {
                   GoogleAuthProvider.credential(
                       idToken: googleAuth.idToken,
                       accessToken: googleAuth.accessToken));
-              // UserProvider().setUid(userCredential.user!.uid);
-              // print('User is sent == ${userCredential.user!.uid}');
-              // return userCredential.user!;
             } else {
               throw FirebaseAuthException(
                 code: 'ERROR_MISSING_GOOGLE_ID_TOKEN',

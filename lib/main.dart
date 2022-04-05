@@ -4,6 +4,7 @@ import 'package:fitness/start.dart';
 import 'package:flutter/material.dart';
 import 'start.dart';
 void main()async{
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());}
 
