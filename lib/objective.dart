@@ -2,7 +2,7 @@ import 'package:fitness/describe.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'phyact.dart';
-import 'describe.dart';
+import 'hw.dart';
 class Objec extends StatefulWidget {
   const Objec({Key? key}) : super(key: key);
 
@@ -23,9 +23,9 @@ class _ObjecState extends State<Objec> {
 
   int selectedIndex =0;
   List<Tech> _chipsList = [
-    Tech("Cleanse & Detox", Colors.white),
+
     Tech("Gain Weight", Colors.white),
-    Tech(" Maintain my current weight", Colors.white),
+
     Tech("Weight Loss", Colors.white)
   ];
 
@@ -40,7 +40,7 @@ class _ObjecState extends State<Objec> {
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
             Navigator.push(
-                context,MaterialPageRoute(builder: (context)=> Describe()) );
+                context,MaterialPageRoute(builder: (context)=> Hw()) );
           },
           child: Text("Continue", textAlign: TextAlign.center,
             style: TextStyle(

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "426069008808",
+    "project_id": "nutrifit-ac534",
+    "storage_bucket": "nutrifit-ac534.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426069008808:android:ec9aef1cfdc6f9e0267d9d",
+        "android_client_info": {
+          "package_name": "com.example.fitness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426069008808-ri0m59n9i692ua63ucd2vv945sornk54.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitness",
+            "certificate_hash": "440c1e4237bad8b747df39e79eb57caeb542c2be"
+          }
+        },
+        {
+          "client_id": "426069008808-vf9kk4pd8m3guoi2pcl8ce8blvbilh3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_w2cbIZQ1xOpca4uy4UlkS0o-SZgfXh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426069008808-vf9kk4pd8m3guoi2pcl8ce8blvbilh3g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

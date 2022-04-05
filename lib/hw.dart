@@ -31,7 +31,7 @@ class _HwState extends State<Hw> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-          prefixIcon: Icon(Icons.alternate_email_outlined,color:Color(0xff111f80)),
+          prefixIcon: Icon(Icons.height,color:Color(0xff111f80)),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Height in Cm",
           hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
@@ -54,7 +54,7 @@ class _HwState extends State<Hw> {
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
-          prefixIcon: Icon(Icons.lock_sharp,color:Color(0xff111f80)),
+          prefixIcon: Icon(Icons.fitness_center_sharp,color:Color(0xff111f80)),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Weight in Kg",
           hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
