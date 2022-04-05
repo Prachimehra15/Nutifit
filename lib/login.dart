@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness/dashboard.dart';
+import 'package:fitness/services/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -7,7 +8,6 @@ import 'start.dart';
 import 'signup.dart';
 import 'yoga.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   //form key
-  final _formKey =GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   final _firebaseAuth = FirebaseAuth.instance;
 
@@ -28,97 +28,91 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     //email field
-    final emailField =TextFormField(
+    final emailField = TextFormField(
       autofocus: false,
       controller: emailController,
-      keyboardType:TextInputType.emailAddress ,
+      keyboardType: TextInputType.emailAddress,
       //validator: (){}
-      onSaved: (value)
-      {
-        emailController.text=value!;
+      onSaved: (value) {
+        emailController.text = value!;
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.alternate_email_outlined,color:Color(0xff111f80)),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-        hintText: "Email",
+          prefixIcon:
+              Icon(Icons.alternate_email_outlined, color: Color(0xff111f80)),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Email",
           hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(23),
-
-        )
-      ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(23),
+          )),
     );
 
     //password field
-    final passwordField =TextFormField(
+    final passwordField = TextFormField(
       autofocus: false,
       controller: passwordController,
       obscureText: true,
       //validator: (){}
-      onSaved: (value)
-      {
-        passwordController.text=value!;
+      onSaved: (value) {
+        passwordController.text = value!;
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
-          prefixIcon: Icon(Icons.lock_sharp,color:Color(0xff111f80)),
+          prefixIcon: Icon(Icons.lock_sharp, color: Color(0xff111f80)),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
           hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(23)
-          )
-      ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(23))),
     );
 
-    final loginButton= Material(
-      elevation: 5,
-      borderRadius: BorderRadius.circular(30),
-      color: Colors.white,
-      child: MaterialButton(
-        padding:EdgeInsets.fromLTRB(20, 15, 20, 15) ,
-        minWidth: MediaQuery.of(context).size.width,
-        onPressed: () async{
-           // google sign in code
+    final loginButton = Material(
+        elevation: 5,
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.white,
+        child: MaterialButton(
+          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          minWidth: MediaQuery.of(context).size.width,
+          onPressed: () async {
+            // google sign in code
 
-          final googleSignIn = GoogleSignIn();
-          final googleUser = await googleSignIn.signIn();
-          if (googleUser != null) {
-            final googleAuth = await googleUser.authentication;
-            if (googleAuth.idToken != null) {
-              final userCredential = await _firebaseAuth.signInWithCredential(
-                  GoogleAuthProvider.credential(
-                      idToken: googleAuth.idToken,
-                      accessToken: googleAuth.accessToken));
-            } else {
-              throw FirebaseAuthException(
-                code: 'ERROR_MISSING_GOOGLE_ID_TOKEN',
-                message: 'Missing Google ID Token',
-              );
+            try {
+              Auth service = Auth();
+
+              await service.signInWithGoogle().then((value) {
+                if (value.uid == null) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => Dashboard()),
+                  ); // will execute if new user logs in
+                } else {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  Yoga()),
+                  ); // if existing user logs in
+                }
+              });
+            } catch (e) {
+              print(e);
+              if (e is FirebaseAuthException) {
+                print('Firebase Login error => ${e.message!}');
+              }
             }
-          } else {
-            throw FirebaseAuthException(
-              code: 'ERROR_ABORTED_BY_USER',
-              message: 'Sign in aborted by user',
-            );
-          }
 
-
-          Navigator.push(
-          context,MaterialPageRoute(builder: (context)=> Dashboard()) );
-        },
-        child: Text("Log In",textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20,
-            color: Color(0xffd417bc),
-            fontWeight: FontWeight.bold,
-            //fontStyle: FontStyle.italic
+            // Navigator.push(
+            //     context, MaterialPageRoute(builder: (context) => Dashboard()));
+          },
+          child: Text(
+            "Log In",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20,
+              color: Color(0xffd417bc),
+              fontWeight: FontWeight.bold,
+              //fontStyle: FontStyle.italic
+            ),
           ),
-        ),
-
-      )
-    );
+        ));
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -131,12 +125,11 @@ class _LoginState extends State<Login> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children:<Widget>[
+                  children: <Widget>[
                     SizedBox(
-                      height: 200,
-                      child:Image.asset("assets/images/app logo.png",
-                      fit: BoxFit.contain)
-                    ),
+                        height: 200,
+                        child: Image.asset("assets/images/app logo.png",
+                            fit: BoxFit.contain)),
                     SizedBox(height: 45),
                     emailField,
                     SizedBox(height: 25),
@@ -147,16 +140,23 @@ class _LoginState extends State<Login> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Don't have an account?",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15)),
-                        GestureDetector(onTap: (){
-                          Navigator.push
-                            (context,
-                              MaterialPageRoute(
-                                  builder:(context)=> Signup()));
-                        },
-                        child: Text(" SignUp ",
-                        style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Color(0xff290540)),
-                        ),
+                        Text("Don't have an account?",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15)),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Signup()));
+                          },
+                          child: Text(
+                            " SignUp ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Color(0xff290540)),
+                          ),
                         )
                       ],
                     )
@@ -166,7 +166,7 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
-      ) ,
+      ),
     );
   }
 }
