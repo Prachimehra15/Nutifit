@@ -46,6 +46,7 @@ dependencies:
 #=======
   firebase_auth: ^3.1.0
   firebase_core: ^1.6.0
+  google_sign_in: ^5.2.1
 #>>>>>>> 62cd443 (now complete app)
 dev_dependencies:
   flutter_test:

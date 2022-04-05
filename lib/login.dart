@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness/dashboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'start.dart';
 import 'signup.dart';
 import 'yoga.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -16,6 +19,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   //form key
   final _formKey =GlobalKey<FormState>();
+
+  final _firebaseAuth = FirebaseAuth.instance;
 
   //editing controller
   final TextEditingController emailController = new TextEditingController();
@@ -74,7 +79,35 @@ class _LoginState extends State<Login> {
       child: MaterialButton(
         padding:EdgeInsets.fromLTRB(20, 15, 20, 15) ,
         minWidth: MediaQuery.of(context).size.width,
-        onPressed: (){
+        onPressed: () async{
+           // google sign in code
+
+          final googleSignIn = GoogleSignIn();
+          final googleUser = await googleSignIn.signIn();
+          if (googleUser != null) {
+            final googleAuth = await googleUser.authentication;
+            if (googleAuth.idToken != null) {
+              final userCredential = await _firebaseAuth.signInWithCredential(
+                  GoogleAuthProvider.credential(
+                      idToken: googleAuth.idToken,
+                      accessToken: googleAuth.accessToken));
+              // UserProvider().setUid(userCredential.user!.uid);
+              // print('User is sent == ${userCredential.user!.uid}');
+              // return userCredential.user!;
+            } else {
+              throw FirebaseAuthException(
+                code: 'ERROR_MISSING_GOOGLE_ID_TOKEN',
+                message: 'Missing Google ID Token',
+              );
+            }
+          } else {
+            throw FirebaseAuthException(
+              code: 'ERROR_ABORTED_BY_USER',
+              message: 'Sign in aborted by user',
+            );
+          }
+
+
           Navigator.push(
           context,MaterialPageRoute(builder: (context)=> Dashboard()) );
         },

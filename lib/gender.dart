@@ -40,7 +40,7 @@ class _GenState extends State<Gen> {
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Diereq()));
+                context, MaterialPageRoute(builder: (context) => Direq()));
           },
           child: Text(
             "Continue",
