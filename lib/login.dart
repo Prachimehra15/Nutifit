@@ -88,7 +88,7 @@ class _LoginState extends State<Login> {
                 } else {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) =>  Yoga()),
+                    MaterialPageRoute(builder: (context) =>  Dashboard()),
                   ); // if existing user logs in
                 }
               });

@@ -46,7 +46,7 @@ class _HwState extends State<Hw> {
     final passwordField =TextFormField(
       autofocus: false,
       controller: weightController,
-      obscureText: true,
+
       //validator: (){}
       onSaved: (value)
       {
