@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness/dashboard.dart';
 import 'package:fitness/services/auth.dart';
+import 'package:fitness/services/google_sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -76,28 +77,30 @@ class _LoginState extends State<Login> {
           onPressed: () async {
             // google sign in code
 
-            try {
-              Auth service = Auth();
+            signInGoogle(context);
 
-              await service.signInWithGoogle().then((value) {
-                if (value.uid == null) {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => Dashboard()),
-                  ); // will execute if new user logs in
-                } else {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) =>  Dashboard()),
-                  ); // if existing user logs in
-                }
-              });
-            } catch (e) {
-              print(e);
-              if (e is FirebaseAuthException) {
-                print('Firebase Login error => ${e.message!}');
-              }
-            }
+            // try {
+            //   Auth service = Auth();
+            //
+            //   await service.signInWithGoogle().then((value) {
+            //     if (value.uid == null) {
+            //       Navigator.pushReplacement(
+            //         context,
+            //         MaterialPageRoute(builder: (context) => Dashboard()),
+            //       ); // will execute if new user logs in
+            //     } else {
+            //       Navigator.pushReplacement(
+            //         context,
+            //         MaterialPageRoute(builder: (context) =>  Dashboard()),
+            //       ); // if existing user logs in
+            //     }
+            //   });
+            // } catch (e) {
+            //   print(e);
+            //   if (e is FirebaseAuthException) {
+            //     print('Firebase Login error => ${e.message!}');
+            //   }
+            // }
 
             // Navigator.push(
             //     context, MaterialPageRoute(builder: (context) => Dashboard()));
