@@ -27,44 +27,44 @@ class _LoginState extends State<Login> {
   final TextEditingController passwordController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    //email field
-    final emailField = TextFormField(
-      autofocus: false,
-      controller: emailController,
-      keyboardType: TextInputType.emailAddress,
-      //validator: (){}
-      onSaved: (value) {
-        emailController.text = value!;
-      },
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-          prefixIcon:
-              Icon(Icons.alternate_email_outlined, color: Color(0xff111f80)),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Email",
-          hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(23),
-          )),
-    );
-
-    //password field
-    final passwordField = TextFormField(
-      autofocus: false,
-      controller: passwordController,
-      obscureText: true,
-      //validator: (){}
-      onSaved: (value) {
-        passwordController.text = value!;
-      },
-      textInputAction: TextInputAction.done,
-      decoration: InputDecoration(
-          prefixIcon: Icon(Icons.lock_sharp, color: Color(0xff111f80)),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Password",
-          hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(23))),
-    );
+    // //email field
+    // final emailField = TextFormField(
+    //   autofocus: false,
+    //   controller: emailController,
+    //   keyboardType: TextInputType.emailAddress,
+    //   //validator: (){}
+    //   onSaved: (value) {
+    //     emailController.text = value!;
+    //   },
+    //   textInputAction: TextInputAction.next,
+    //   decoration: InputDecoration(
+    //       prefixIcon:
+    //           Icon(Icons.alternate_email_outlined, color: Color(0xff111f80)),
+    //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+    //       hintText: "Email",
+    //       hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
+    //       border: OutlineInputBorder(
+    //         borderRadius: BorderRadius.circular(23),
+    //       )),
+    // );
+    //
+    // //password field
+    // final passwordField = TextFormField(
+    //   autofocus: false,
+    //   controller: passwordController,
+    //   obscureText: true,
+    //   //validator: (){}
+    //   onSaved: (value) {
+    //     passwordController.text = value!;
+    //   },
+    //   textInputAction: TextInputAction.done,
+    //   decoration: InputDecoration(
+    //       prefixIcon: Icon(Icons.lock_sharp, color: Color(0xff111f80)),
+    //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+    //       hintText: "Password",
+    //       hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
+    //       border: OutlineInputBorder(borderRadius: BorderRadius.circular(23))),
+    // );
 
     final loginButton = Material(
         elevation: 5,
@@ -103,7 +103,7 @@ class _LoginState extends State<Login> {
             //     context, MaterialPageRoute(builder: (context) => Dashboard()));
           },
           child: Text(
-            "Log In",
+            "Log In with Google",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
@@ -130,36 +130,36 @@ class _LoginState extends State<Login> {
                         height: 200,
                         child: Image.asset("assets/images/app logo.png",
                             fit: BoxFit.contain)),
-                    SizedBox(height: 45),
-                    emailField,
-                    SizedBox(height: 25),
-                    passwordField,
+                    // SizedBox(height: 45),
+                    // emailField,
+                    // SizedBox(height: 25),
+                    // passwordField,
                     SizedBox(height: 35),
                     loginButton,
                     SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Don't have an account?",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15)),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Signup()));
-                          },
-                          child: Text(
-                            " SignUp ",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                color: Color(0xff290540)),
-                          ),
-                        )
-                      ],
-                    )
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: <Widget>[
+                    //     Text("Don't have an account?",
+                    //         style: TextStyle(
+                    //             fontWeight: FontWeight.bold, fontSize: 15)),
+                    //     GestureDetector(
+                    //       onTap: () {
+                    //         Navigator.push(
+                    //             context,
+                    //             MaterialPageRoute(
+                    //                 builder: (context) => Signup()));
+                    //       },
+                    //       child: Text(
+                    //         " SignUp ",
+                    //         style: TextStyle(
+                    //             fontWeight: FontWeight.bold,
+                    //             fontSize: 15,
+                    //             color: Color(0xff290540)),
+                    //       ),
+                    //     )
+                    //   ],
+                    // )
                   ],
                 ),
               ),

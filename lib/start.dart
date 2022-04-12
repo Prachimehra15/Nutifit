@@ -27,8 +27,8 @@ class Start extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(20.0))),
                     onPressed: (){
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder:(context)=>DietPlan()
-                            // Login()
+                        MaterialPageRoute(builder:(context)=>
+                            Login()
                         )
                       );
                     },
