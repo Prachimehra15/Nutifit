@@ -1,3 +1,4 @@
+import 'package:fitness/screens/diet_plan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/raised_button.dart';
 import 'package:flutter/src/widgets/image_icon.dart';
@@ -26,7 +27,8 @@ class Start extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(20.0))),
                     onPressed: (){
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder:(context)=>Login()
+                        MaterialPageRoute(builder:(context)=>DietPlan()
+                            // Login()
                         )
                       );
                     },
