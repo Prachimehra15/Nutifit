@@ -26,7 +26,7 @@ class CustomRadio extends StatelessWidget {
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
             Navigator.push(
-                context,MaterialPageRoute(builder: (context)=> Diereq()) );
+                context,MaterialPageRoute(builder: (context)=> Direq()) );
           },
           child: Text("Continue", textAlign: TextAlign.center,
             style: TextStyle(

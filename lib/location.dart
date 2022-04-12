@@ -80,7 +80,7 @@ class _LocationState extends State<Location> {
                 hint: Center(
                     child: Text(
                       'Select the state',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.black),
                     )),
                 icon: Icon(
                   Icons.keyboard_arrow_down_sharp,

@@ -1,8 +1,13 @@
+//import 'dart:html';
+
+import 'package:fitness/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/src/painting/alignment.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'surya.dart';
 import 'yoga.dart';
+import 'dietician.dart';
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
 
@@ -11,6 +16,9 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  //final _firebaseAuth = FirebaseAuth.instance;
+  Auth auth =Auth();
+
   @override
   Widget build(BuildContext context) {
     final move1 = Material(
@@ -25,7 +33,7 @@ class _DashboardState extends State<Dashboard> {
           //minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
             Navigator.push(
-                context,MaterialPageRoute(builder: (context)=> Yoga()) );
+                context,MaterialPageRoute(builder: (context)=> Dietician()) );
           },
 
           child: Icon(Icons.food_bank_rounded,size: 140,color:Colors.blueAccent,)
@@ -80,11 +88,20 @@ class _DashboardState extends State<Dashboard> {
           child:Container(
             alignment: Alignment.center,
             padding: EdgeInsets.all(10),
-            child: Row(
+            child: Column(
               children: <Widget>[
-                SizedBox(width: 25),
+                SizedBox(
+                    height: 50,
+                    child:Text('Welcome',style: TextStyle(color: Color(0xffffffff),fontFamily:'Lora',fontSize: 30))
+                ),
+                SizedBox(
+                    height: 50,
+                    child:Text(auth.currentUser!.displayName!,style: TextStyle(color: Color(0xffffffff),fontFamily:'Lora',fontSize: 30))
+                ),
+                //Text( auth.currentUser!.displayName!),
+                SizedBox(height: 25),
                 move1,
-                SizedBox(width: 25),
+                SizedBox(height: 25),
                 move2,
 
               ],
