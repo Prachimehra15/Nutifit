@@ -1,10 +1,12 @@
 import 'package:fitness/services/auth.dart';
 import 'package:fitness/services/firebase.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'signup.dart';
 import 'age.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/src/painting/alignment.dart';
+import 'package:geolocator/geolocator.dart';
 
 class Location extends StatefulWidget {
   const Location({Key? key}) : super(key: key);
@@ -14,6 +16,8 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
+  late LocationPermission permission;
+  String? state;
   List<String> _state = [
     'Andaman & Nicobar',
     'Andhra Pradesh',
@@ -52,6 +56,52 @@ class _LocationState extends State<Location> {
     'Uttar Pradesh',
     'West Bengal'
   ];
+
+  @override
+  void initState() {
+    getLocation().then((value) {
+      getState(value);
+    });
+    super.initState();
+  }
+
+  Future<Position> getLocation() async {
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+    // Position position = await Geolocator.getCurrentPosition(
+    //     desiredAccuracy: LocationAccuracy.high);
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    List<Placemark> placemarks =
+    await placemarkFromCoordinates(position.latitude, position.longitude);
+    Placemark place = placemarks[0];
+    setState(() {
+      state = place.locality;
+      print('==> state $state');
+    });
+    return await Geolocator.getCurrentPosition();
+  }
+
+  void getState(Position position) async {
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
+    Placemark place = placemarks[0];
+    setState(() {
+      state = place.locality;
+      print('==> state $state');
+    });
+  }
+
   String? _selectedstate;
   @override
   Widget build(BuildContext context) {
@@ -115,13 +165,13 @@ class _LocationState extends State<Location> {
                         _selectedstate = value;
                       });
                     },
-                    value: _selectedstate,
+                    value: _selectedstate ?? state,
 
                     // Hide the default underline
                     underline: Container(),
                     hint: Center(
                         child: Text(
-                      'Select the state',
+                      state ?? 'Select',
                       style: TextStyle(color: Colors.black),
                     )),
                     icon: Icon(
