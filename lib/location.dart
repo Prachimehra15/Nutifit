@@ -97,8 +97,8 @@ class _LocationState extends State<Location> {
         await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placemarks[0];
     setState(() {
-      state = place.locality;
-      print('==> state $state');
+      state = place.administrativeArea;
+      print('==> state ${place.toJson()}');
     });
   }
 
@@ -122,6 +122,15 @@ class _LocationState extends State<Location> {
                     (value) => Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Age())),
                   );
+            }else if(state != null){
+              FireStore()
+                  .pushUserState(
+                  uid: Auth().currentUser!.uid,
+                  state: state.toString())
+                  .then(
+                    (value) => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Age())),
+              );
             }
           },
           child: Text(
@@ -165,13 +174,13 @@ class _LocationState extends State<Location> {
                         _selectedstate = value;
                       });
                     },
-                    value: _selectedstate ?? state,
+                    value: _selectedstate, // ?? state,
 
                     // Hide the default underline
                     underline: Container(),
                     hint: Center(
                         child: Text(
-                      state ?? 'Select',
+                      state.toString(),
                       style: TextStyle(color: Colors.black),
                     )),
                     icon: Icon(
