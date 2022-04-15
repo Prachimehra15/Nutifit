@@ -1,5 +1,6 @@
 //import 'dart:html';
 
+import 'package:fitness/screens/diet_plan.dart';
 import 'package:fitness/services/auth.dart';
 import 'package:fitness/services/google_sign_in.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class _DashboardState extends State<Dashboard> {
             //minWidth: MediaQuery.of(context).size.width,
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Dietician()));
+                  MaterialPageRoute(builder: (context) => DietPlan()));
             },
             child: Icon(
               Icons.food_bank_rounded,

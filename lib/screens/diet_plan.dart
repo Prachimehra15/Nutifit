@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitness/services/auth.dart';
+import 'package:fitness/services/firebase.dart';
 import 'package:flutter/material.dart';
 
 class DietPlan extends StatefulWidget {
@@ -9,6 +11,25 @@ class DietPlan extends StatefulWidget {
 }
 
 class _DietPlanState extends State<DietPlan> {
+
+  String dietary = 'veg';
+
+  @override
+  void initState() {
+    super.initState();
+    getDietary(uid: Auth().currentUser!.uid);
+  }
+
+  Future<String> getDietary({required String uid})async{
+await FireStore().getUserDetail(uid: uid).then((value) {
+  print("Data from firebase => ${value.toString()}");
+  setState(() {
+    dietary = value['dietary'];
+  });
+});
+return dietary;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +64,8 @@ class _DietPlanState extends State<DietPlan> {
                 width: MediaQuery.of(context).size.width / 1.5,
                 child: Column(
                   children: [
-                    Text('All Veg'),
-                    Expanded(
+                  dietary != "Veg" ? SizedBox() : Text(dietary),
+                    dietary != "Veg" ? SizedBox() : Expanded(
                       child: ListView.builder(
                           itemCount: veg_time.length,
                           itemBuilder: (BuildContext context, int index) {
@@ -75,8 +96,8 @@ class _DietPlanState extends State<DietPlan> {
                             );
                           }),
                     ),
-                    Text('Non Veg'),
-                    Expanded(
+                    dietary != "Non-Veg" ? SizedBox() : Text('Non Veg'),
+                    dietary != "Non-Veg" ? SizedBox() : Expanded(
                       child: ListView.builder(
                           itemCount: nonveg_time.length,
                           itemBuilder: (BuildContext context, int index) {

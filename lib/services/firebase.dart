@@ -4,11 +4,11 @@ class FireStore {
 
   //get
 
-  Future<String> getUserState({required String uid})async{
+  Future<Map<String, dynamic>> getUserDetail({required String uid})async{
 final ref = FirebaseFirestore.instance.collection('users').doc(uid);
 return await ref.get().then((value) {
   print('======>> ${value.data()!['state']}');
-  return value.data()!['state'];
+  return value.data()!;
 });
   }
 

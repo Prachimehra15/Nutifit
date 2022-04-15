@@ -11,7 +11,7 @@ Auth service = Auth();
 Future<void> signInGoogle(BuildContext context) async {
   try {
     await service.signInWithGoogle().then((value) {
-      FireStore().getUserState(uid: value.uid).then((value) {
+      FireStore().getUserDetail(uid: value.uid).then((value) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => Dashboard()),
