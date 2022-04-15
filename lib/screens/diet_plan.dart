@@ -13,6 +13,7 @@ class DietPlan extends StatefulWidget {
 class _DietPlanState extends State<DietPlan> {
 
   String dietary = 'veg';
+  String state = 'Goa';
 
   @override
   void initState() {
@@ -25,6 +26,7 @@ await FireStore().getUserDetail(uid: uid).then((value) {
   print("Data from firebase => ${value.toString()}");
   setState(() {
     dietary = value['dietary'];
+    state = value['state'];
   });
 });
 return dietary;
@@ -37,7 +39,7 @@ return dietary;
         child: StreamBuilder<DocumentSnapshot>(
           stream: FirebaseFirestore.instance
               .collection("diet")
-              .doc('maharashtra')
+              .doc(state)
               .snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
@@ -54,10 +56,10 @@ return dietary;
             var veg_food = [];
             var nonveg_time = [];
             var nonveg_food = [];
-            plans['veg'].forEach((key, value) => veg_time.add(key));
-            plans['veg'].forEach((key, value) => veg_food.add(value));
-            plans['nonveg'].forEach((key, value) => nonveg_time.add(key));
-            plans['nonveg'].forEach((key, value) => nonveg_food.add(value));
+            plans['Veg'].forEach((key, value) => veg_time.add(key));
+            plans['Veg'].forEach((key, value) => veg_food.add(value));
+            plans['Non-Veg'].forEach((key, value) => nonveg_time.add(key));
+            plans['Non-Veg'].forEach((key, value) => nonveg_food.add(value));
             return Center(
               child: Container(
                 height: MediaQuery.of(context).size.height / 1.5,
