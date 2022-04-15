@@ -81,9 +81,10 @@ class _LocationState extends State<Location> {
     }
     // Position position = await Geolocator.getCurrentPosition(
     //     desiredAccuracy: LocationAccuracy.high);
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
     List<Placemark> placemarks =
-    await placemarkFromCoordinates(position.latitude, position.longitude);
+        await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placemarks[0];
     setState(() {
       state = place.locality;
@@ -122,19 +123,18 @@ class _LocationState extends State<Location> {
                     (value) => Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Age())),
                   );
-            }else if(state != null){
+            } else if (state != null) {
               FireStore()
                   .pushUserState(
-                  uid: Auth().currentUser!.uid,
-                  state: state.toString())
+                      uid: Auth().currentUser!.uid, state: state.toString())
                   .then(
                     (value) => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Age())),
-              );
+                        MaterialPageRoute(builder: (context) => Age())),
+                  );
             }
           },
           child: Text(
-            "Continue",
+            "Correct",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
