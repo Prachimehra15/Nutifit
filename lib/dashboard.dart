@@ -55,8 +55,26 @@ class _DashboardState extends State<Dashboard> {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Yoga()));
             },
+          child: Image.asset
+            ("assets/images/yoga.png",height: 200,width: 140,
+            color: Colors.blueAccent,)
+        )
+    );
+    final move4 = Material(
+        elevation: 5,
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.white,
+        child: MaterialButton(
+            padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+            height: 215,
+            minWidth: 100,
+            //minWidth: MediaQuery.of(context).size.width,
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Dietician()));
+            },
             child: Icon(
-              Icons.food_bank_rounded,
+              Icons.contacts_rounded,
               size: 140,
               color: Colors.blueAccent,
             )));
@@ -103,6 +121,8 @@ child: Text('Log Out'),
                   move1,
                   SizedBox(height: 25),
                   move2,
+                  SizedBox(height: 25),
+                  move4,
                   SizedBox(height: 25),
                   move3,
                 ],

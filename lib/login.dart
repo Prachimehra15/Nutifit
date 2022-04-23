@@ -120,7 +120,7 @@ class _LoginState extends State<Login> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            color: Color(0xffE91C4C),
+            color: Color(0xffa957c6),
             child: Padding(
               padding: const EdgeInsets.all(36.0),
               child: Form(
@@ -130,7 +130,7 @@ class _LoginState extends State<Login> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                        height: 200,
+                        height: 300,
                         child: Image.asset("assets/images/app logo.png",
                             fit: BoxFit.contain)),
                     // SizedBox(height: 45),

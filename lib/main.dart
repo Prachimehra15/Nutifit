@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'NUTRIFIT',
       theme: ThemeData(
-          primaryColor: Colors.pink,
-          scaffoldBackgroundColor: Color(0xffE91C4C)
+          primaryColor: Color(0xffa957c6),
+          scaffoldBackgroundColor: Color(0xffa957c6)
       ),
 
 

@@ -81,8 +81,9 @@ class _GenderSelectorState extends State<GenderSelector> {
   void initState() {
     super.initState();
     genders.add(Gender("Male", MdiIcons.food, false));
-    genders.add(Gender("Female", MdiIcons.fish, false));
     genders.add(Gender("Others", MdiIcons.genderTransgender, false));
+    genders.add(Gender("Female", MdiIcons.fish, false));
+
   }
 
   @override

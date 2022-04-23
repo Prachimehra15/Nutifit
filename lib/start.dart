@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fitness/screens/diet_plan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/raised_button.dart';
@@ -45,7 +47,11 @@ class Start extends StatelessWidget {
                               color: Colors.white,
                               padding: EdgeInsets.fromLTRB(100,4 , 4, 4),
                               child: Text('GET STARTED',
-                                style: TextStyle(color: Color(0xffd417bc),fontFamily:'Lora',),
+                                style: TextStyle(
+                                    color: Color(0xffd417bc),fontFamily:'Lora',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                ),
                               ),
                             ),
 
