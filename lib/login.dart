@@ -129,10 +129,13 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(
-                        height: 300,
-                        child: Image.asset("assets/images/app logo.png",
-                            fit: BoxFit.contain)),
+                    Hero(
+                      tag: 'logo',
+                      child: SizedBox(
+                          height: 300,
+                          child: Image.asset("assets/images/app logo.png",
+                              fit: BoxFit.contain)),
+                    ),
                     // SizedBox(height: 45),
                     // emailField,
                     // SizedBox(height: 25),

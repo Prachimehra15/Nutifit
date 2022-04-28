@@ -1,12 +1,13 @@
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fitness/start.dart';
 import 'package:flutter/material.dart';
 import 'start.dart';
-void main()async{
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());}
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({key}) : super(key: key);
@@ -17,12 +18,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'NUTRIFIT',
       theme: ThemeData(
-          primaryColor: Color(0xffa957c6),
-          scaffoldBackgroundColor: Color(0xffa957c6)
-      ),
-
-
-      home:Start(),
+          primaryColor: Color.fromARGB(255, 251, 239, 255),
+          scaffoldBackgroundColor: Color.fromARGB(255, 245, 235, 248)),
+      home: Start(),
     );
   }
 }
