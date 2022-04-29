@@ -1,3 +1,5 @@
+import 'package:fitness/services/auth.dart';
+import 'package:fitness/services/firebase.dart';
 import 'package:flutter/material.dart';
 import 'dietreq.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -86,6 +88,7 @@ class _GenState extends State<Gen> {
                           return InkWell(
                             splashColor: Colors.pinkAccent,
                             onTap: () {
+                              FireStore().pushUserGender(uid: Auth().currentUser!.uid, gender: genders[index].name);
                               setState(() {
                                 genders.forEach((gender) => gender.isSelected = false);
                                 genders[index].isSelected = true;

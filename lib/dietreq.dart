@@ -1,3 +1,5 @@
+import 'package:fitness/services/auth.dart';
+import 'package:fitness/services/firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'gender.dart';
@@ -83,6 +85,7 @@ class _DireqState extends State<Direq> {
                           return InkWell(
                             splashColor: Colors.pinkAccent,
                             onTap: () {
+                              FireStore().pushUserDietary(uid: Auth().currentUser!.uid, dietary: diets[index].name);
                               setState(() {
                                 diets.forEach((gender) => gender.isSelected = false);
                                 diets[index].isSelected = true;

@@ -23,12 +23,12 @@ class _DieticianState extends State<Dietician> {
                     backgroundImage: AssetImage('assets/images/app logo.png'),
                   ),
                   Text(
-                    'Renu Sharma',
+                    'Kailas Khopatkar',
                     style: TextStyle(
                       fontFamily: 'Lora',
-                      fontSize: 50.0,
+                      fontSize:40.0,
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 2.0,
+                      letterSpacing: 1.0,
                       color: Colors.white,
                     ),
                   ),
@@ -54,7 +54,7 @@ class _DieticianState extends State<Dietician> {
                         color: Colors.lightBlueAccent,
                       ),
                       title: Text(
-                        '+91 95 xx 999 xxx',
+                        '+91 8433543353',
                         style: TextStyle(
                             color: Colors.lightBlueAccent,
                             fontFamily: 'Lora',
